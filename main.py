@@ -17,6 +17,7 @@ def main(args):
     n_cycle = len(paths[args.classes[0]]) // args.n_hil if len(paths[args.classes[0]]) % args.n_hil == 0 else (len(paths[args.classes[0]]) // args.n_hil) + 1
 
     # Get data per cycle 
+    print(args.label_save)
     for n in tqdm(range(n_cycle)):
         for cls, img_label_list in paths.items():
             sampled = random.sample(img_label_list, args.n_hil)
@@ -51,8 +52,8 @@ if __name__=="__main__":
                         default="result/",
                         help="Folder that results are saved")
     parser.add_argument("--label_save",
-                        type=bool,
-                        default=True,
+                        default=False,
+                        action="store_true",
                         help="Decide whether to save labels as well when saving HIL folders")
     args = parser.parse_args()
 
